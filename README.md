@@ -4,12 +4,12 @@
 4. Build a nutrition planner.
 
 5. Technologies and components :
-Clean architecture, Single source of Truth
-Search Query
-Dependency injection - Hilt
-Custom component
-Navigation component
-Third-party : Retrofit, OkHttp, Coil
+*  Clean architecture, Single source of Truth
+*  Search Query
+*  Dependency injection - Hilt
+*  Custom component
+*  Navigation component
+*  Third-party : Retrofit, OkHttp, Coil
 
 ![Screenshot_20231026_080928_Food App](https://github.com/HoangNguyenHuy1220/Nutrition/assets/71805048/635958cd-80ae-462c-9a88-f611e44b0421)
 ![Screenshot_20231026_080947_Food App](https://github.com/HoangNguyenHuy1220/Nutrition/assets/71805048/be46e991-055e-44c1-9748-6751309150e1)
