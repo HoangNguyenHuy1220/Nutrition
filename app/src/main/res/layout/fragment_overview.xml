@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="recipe"
+            type="com.example.trainning_hoang.data.database.model.Result" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.detail.OverviewFragment">
+
+        <ImageView
+            android:id="@+id/img_food"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/image_height"
+            android:scaleType="centerCrop"
+            app:foodImage="@{recipe.image}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <View
+            android:id="@+id/view_gradient"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/gradient_height"
+            android:background="@drawable/gradient_overlay"
+            app:layout_constraintBottom_toBottomOf="@id/img_food"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/card_padding_vertical"
+            android:layout_marginBottom="@dimen/card_padding_vertical"
+            android:drawableTop="@drawable/ic_time"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/img_food"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:readyInMinute="@{recipe.readyInMinutes}"
+            tools:ignore="TextContrastCheck"
+            tools:text="100" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/card_padding_vertical"
+            android:layout_marginBottom="@dimen/card_padding_vertical"
+            android:drawableTop="@drawable/ic_like"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/img_food"
+            app:layout_constraintEnd_toStartOf="@id/tv_time"
+            app:numberOfLike="@{recipe.aggregateLikes}"
+            tools:text="50" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_food">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/text_margin_horizontal"
+                android:paddingVertical="@dimen/title_margin_top">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{recipe.title}"
+                    android:textColor="@color/darkGray"
+                    android:textSize="@dimen/detail_title_size"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/courgette"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_vegetarian"
+                    style="@style/food_attribute_style"
+                    android:text="@string/vegetarian"
+                    app:drawableStartCompat="@drawable/ic_check_mark"
+                    app:food_attribute="@{recipe.vegetarian}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_gluten_free"
+                    style="@style/food_attribute_style"
+                    android:text="@string/gluten_free"
+                    app:drawableStartCompat="@drawable/ic_check_mark"
+                    app:food_attribute="@{recipe.glutenFree}"
+                    app:layout_constraintEnd_toStartOf="@id/tv_healthy"
+                    app:layout_constraintStart_toEndOf="@id/tv_vegetarian"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_healthy"
+                    style="@style/food_attribute_style"
+                    android:text="@string/healthy"
+                    app:drawableStartCompat="@drawable/ic_check_mark"
+                    app:food_attribute="@{recipe.veryHealthy}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_gluten_free"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_vegan"
+                    style="@style/food_attribute_style"
+                    android:text="@string/vegan"
+                    app:drawableStartCompat="@drawable/ic_check_mark"
+                    app:food_attribute="@{recipe.vegan}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_vegetarian" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_dairy_free"
+                    style="@style/food_attribute_style"
+                    android:text="@string/dairy_free"
+                    app:drawableStartCompat="@drawable/ic_check_mark"
+                    app:food_attribute="@{recipe.dairyFree}"
+                    app:layout_constraintStart_toStartOf="@id/tv_gluten_free"
+                    app:layout_constraintTop_toBottomOf="@id/tv_vegetarian" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_cheap"
+                    style="@style/food_attribute_style"
+                    android:text="@string/cheap"
+                    app:drawableStartCompat="@drawable/ic_check_mark"
+                    app:food_attribute="@{recipe.cheap}"
+                    app:layout_constraintStart_toStartOf="@id/tv_healthy"
+                    app:layout_constraintTop_toBottomOf="@id/tv_vegetarian" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/card_padding_vertical"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:textSize="@dimen/text_size_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_vegan"
+                    app:parseHtmlText="@{recipe.summary}"
+                    tools:ignore="TouchTargetSizeCheck"
+                    tools:text="@string/tools_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="text_item_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/card_padding_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/card_padding_vertical</item>
+    </style>
+
+    <style name="text_meal_plan_style" parent="text_item_style">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="food_attribute_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/card_padding_vertical</item>
+        <item name="android:drawablePadding">@dimen/description_margin_top</item>
+    </style>
+
+    <style name="day_of_week_text_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/actor</item>
+        <item name="android:textSize">@dimen/food_name_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="recycler_meal_plan">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/text_margin_horizontal</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+    </style>
+
+</resources>

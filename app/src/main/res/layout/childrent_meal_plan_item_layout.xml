@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="recipe"
+            type="com.example.trainning_hoang.data.database.model.Result" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_padding"
+        app:cardCornerRadius="@dimen/card_padding_vertical"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/mediumGray"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewImage"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/ingredient_image_with"
+                app:cardCornerRadius="@dimen/card_padding_vertical"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_meal_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:foodImage="@{recipe.image}"
+                    tools:ignore="ContentDescription"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:id="@+id/imgDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/description_margin_top"
+                android:layout_marginEnd="@dimen/description_margin_top"
+                android:src="@drawable/ic_delete_meal_plan"
+                app:layout_constraintEnd_toEndOf="@id/cardViewImage"
+                app:layout_constraintTop_toTopOf="@id/cardViewImage"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvFoodTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/text_margin_horizontal"
+                android:layout_marginTop="@dimen/text_margin_horizontal"
+                android:ellipsize="end"
+                android:fontFamily="@font/courgette"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="@{recipe.title}"
+                android:textSize="@dimen/information_display_text"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardViewImage"
+                app:layout_constraintStart_toStartOf="@id/cardViewImage"
+                app:layout_constraintTop_toBottomOf="@id/cardViewImage"
+                tools:text="Food" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_heart"
+                style="@style/text_meal_plan_style"
+                android:drawableTop="@drawable/ic_heart"
+                android:textColor="@color/red"
+                app:layout_constraintEnd_toStartOf="@id/tv_clock"
+                app:layout_constraintStart_toStartOf="@id/cardViewImage"
+                app:layout_constraintTop_toBottomOf="@id/tvFoodTitle"
+                app:numberOfLike="@{recipe.aggregateLikes}"
+                tools:text="100" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_clock"
+                style="@style/text_meal_plan_style"
+                android:drawableTop="@drawable/ic_clock"
+                android:textColor="@color/yellow"
+                app:layout_constraintEnd_toStartOf="@id/tv_vegan"
+                app:layout_constraintStart_toEndOf="@id/tv_heart"
+                app:layout_constraintTop_toBottomOf="@id/tvFoodTitle"
+                app:readyInMinute="@{recipe.readyInMinutes}"
+                tools:text="45" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_vegan"
+                style="@style/text_meal_plan_style"
+                android:text="@string/vegan"
+                android:textColor="@color/green"
+                app:layout_constraintEnd_toEndOf="@id/cardViewImage"
+                app:layout_constraintStart_toEndOf="@id/tv_clock"
+                app:layout_constraintTop_toBottomOf="@id/tvFoodTitle"
+                app:vegan="@{recipe.vegan}"
+                tools:drawableTopCompat="@drawable/ic_leaf" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

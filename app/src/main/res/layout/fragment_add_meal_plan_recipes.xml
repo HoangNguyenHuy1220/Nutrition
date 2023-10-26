@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.trainning_hoang.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightGray"
+        android:paddingHorizontal="@dimen/layout_padding"
+        tools:context=".ui.mealplan.AddMealPlanRecipesFragment">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/recycler_shimmer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadShimmer="@{viewModel.searchRespone}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/playholder_row_layout" />
+
+                <include layout="@layout/playholder_row_layout" />
+
+                <include layout="@layout/playholder_row_layout" />
+
+                <include layout="@layout/playholder_row_layout" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSavedRecipes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/title_margin_top"
+            android:text="@string/favorite_recipes"
+            android:textSize="@dimen/food_name_text_size"
+            android:textStyle="bold"
+            app:fontFamily="@font/actor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRecipes"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/title_margin_top"
+            app:layout_constraintBottom_toTopOf="@id/btApplyRecipes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSavedRecipes" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_error_connection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.7"
+            android:drawableTop="@drawable/ic_error_connection"
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/information_display_text"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            app:loadErrorImage="@{viewModel.searchRespone}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btApplyRecipes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:insetTop="0dp"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/card_padding_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

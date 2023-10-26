@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/recipesFragment">
+
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.example.trainning_hoang.ui.recipe.RecipesFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_recipes">
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeBottomSheet"
+            app:destination="@id/recipeBottomSheet" />
+        <argument
+            android:name="mealType"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="dietType"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_recipesFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteRecipesFragment"
+        android:name="com.example.trainning_hoang.ui.favorite.FavoriteRecipesFragment"
+        android:label="@string/favorite_title"
+        tools:layout="@layout/fragment_favorite_recipes">
+        <action
+            android:id="@+id/action_favoriteRecipesFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealPlanFragment"
+        android:name="com.example.trainning_hoang.ui.mealplan.MealPlanFragment"
+        android:label="@string/meal_plan"
+        tools:layout="@layout/fragment_meal_plan" >
+        <action
+            android:id="@+id/action_mealPlanFragment_to_addNewRecipesFragment"
+            app:destination="@id/addNewRecipesFragment" />
+        <action
+            android:id="@+id/action_mealPlanFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+    <dialog
+        android:id="@+id/recipeBottomSheet"
+        android:name="com.example.trainning_hoang.ui.recipe.RecipeBottomSheet"
+        android:label="fragment_recipe_bottom_sheet"
+        tools:layout="@layout/fragment_recipe_bottom_sheet" >
+        <action
+            android:id="@+id/action_recipeBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </dialog>
+    <activity
+        android:id="@+id/detailActivity"
+        android:name="com.example.trainning_hoang.ui.detail.DetailActivity"
+        android:label="@string/detail_title"
+        tools:layout="@layout/activity_detail">
+        <argument
+            android:name="result"
+            app:argType="com.example.trainning_hoang.data.database.model.Result" />
+    </activity>
+    <fragment
+        android:id="@+id/addNewRecipesFragment"
+        android:name="com.example.trainning_hoang.ui.mealplan.AddMealPlanRecipesFragment"
+        android:label="@string/new_recipe"
+        tools:layout="@layout/fragment_add_meal_plan_recipes" />
+</navigation>

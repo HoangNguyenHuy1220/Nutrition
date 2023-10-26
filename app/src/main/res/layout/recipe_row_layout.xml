@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="recipe"
+            type="com.example.trainning_hoang.data.database.model.Result" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_padding"
+        app:cardCornerRadius="@dimen/text_margin_horizontal"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/mediumGray"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_recipe"
+                android:layout_width="@dimen/image_width"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:foodImage="@{recipe.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_recipe_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/text_margin_horizontal"
+                android:layout_marginTop="@dimen/card_padding_vertical"
+                android:ellipsize="end"
+                android:fontFamily="@font/courgette"
+                android:maxLines="2"
+                android:text="@{recipe.title}"
+                android:textColor="@color/darker"
+                android:textSize="@dimen/food_name_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_recipe"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="recipe" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/description_margin_top"
+                android:ellipsize="end"
+                android:maxLines="3"
+                app:layout_constraintEnd_toEndOf="@id/tv_recipe_name"
+                app:layout_constraintStart_toStartOf="@id/tv_recipe_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_recipe_name"
+                app:parseHtmlText="@{recipe.summary}"
+                tools:text="@string/tools_text" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_heart"
+                style="@style/text_item_style"
+                android:drawableTop="@drawable/ic_heart"
+                android:textColor="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_clock"
+                app:layout_constraintStart_toStartOf="@id/tv_description"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:numberOfLike="@{recipe.aggregateLikes}"
+                tools:text="100" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_clock"
+                style="@style/text_item_style"
+                android:drawableTop="@drawable/ic_clock"
+                android:textColor="@color/yellow"
+                app:layout_constraintEnd_toStartOf="@id/tv_vegan"
+                app:layout_constraintStart_toEndOf="@id/tv_heart"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:readyInMinute="@{recipe.readyInMinutes}"
+                tools:text="45" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_vegan"
+                style="@style/text_item_style"
+                android:text="@string/vegan"
+                android:textColor="@color/green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_clock"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:vegan="@{recipe.vegan}"
+                tools:drawableTopCompat="@drawable/ic_leaf" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
